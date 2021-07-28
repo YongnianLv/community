@@ -1,8 +1,10 @@
 package com.community;
 
 import com.community.dao.DiscussPostMapper;
+import com.community.dao.LoginTicketMapper;
 import com.community.dao.UserMapper;
 import com.community.entity.DiscussPost;
+import com.community.entity.LoginTicket;
 import com.community.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,9 +29,13 @@ public class MapperTests {
     private UserMapper userMapper;
 
     @Autowired
-    DiscussPostMapper discussPostMapper;
+    private DiscussPostMapper discussPostMapper;
+
+    @Autowired
+    private LoginTicketMapper loginTicketMapper;
+
     @Test
-    public void testSelectUser(){
+    public void testSelectUser() {
         User user = userMapper.selectById(101);
         System.out.println(user);
 
@@ -41,7 +47,7 @@ public class MapperTests {
     }
 
     @Test
-    public void testInsetUser(){
+    public void testInsetUser() {
         User user = new User();
         user.setUsername("xiaoming");
         user.setPassword("123");
@@ -56,7 +62,7 @@ public class MapperTests {
     }
 
     @Test
-    public void testUpdateUser(){
+    public void testUpdateUser() {
         int rows = userMapper.updateStatus(150, 1);
         System.out.println(rows);
 
@@ -66,9 +72,10 @@ public class MapperTests {
         rows = userMapper.updatePassword(150, "root");
         System.out.println(rows);
     }
+
     @Test
-    public void testSelectPosts(){
-        List<DiscussPost> list = discussPostMapper.selectDiscussPosts(149, 0, 10);
+    public void testSelectPosts() {
+        List<DiscussPost> list = discussPostMapper.selectDiscussPosts(149, 0, 10,0);
         for (DiscussPost dPost :
                 list) {
             System.out.println(dPost);
@@ -78,5 +85,25 @@ public class MapperTests {
         System.out.println(rows);
     }
 
+    @Test
+    public void testInsertLoginTicket() {
+        LoginTicket loginTicket = new LoginTicket();
+        loginTicket.setUserId(101);
+        loginTicket.setTicket("abc");
+        loginTicket.setStatus(0);
+        loginTicket.setUserId(101);
+        loginTicket.setExpired(new Date(System.currentTimeMillis() + 1000 * 60 * 10));
+
+        loginTicketMapper.insertLoginTicket(loginTicket);
+    }
+    @Test
+    public void testSelectLoginTicket() {
+        LoginTicket loginTicket = loginTicketMapper.selectByTicket("abc");
+        System.out.println(loginTicket);
+        loginTicketMapper.updateStatus("abc", 1);
+
+        loginTicket = loginTicketMapper.selectByTicket("abc");
+        System.out.println(loginTicket);
+    }
 }
 

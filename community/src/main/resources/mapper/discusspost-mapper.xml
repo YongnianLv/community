@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.community.dao.DiscussPostMapper">
+
     <sql id="selectFields">
         id,user_id,title,content,type,status,create_time,comment_count,score
     </sql>
@@ -14,7 +15,12 @@
         <if test="userId!=0">
             and user_id = #{userId}
         </if>
-        order by type desc,create_time desc
+        <if test="orderMode==0">
+            ORDER BY type DESC, create_time DESC
+        </if>
+        <if test="orderMode==1">
+            ORDER BY type DESC, score DESC, create_time DESC
+        </if>
         limit #{offset},#{limit}
     </select>
 
@@ -26,5 +32,37 @@
             and user_id = #{userId}
         </if>
     </select>
+
+    <insert id="insertDiscussPost" parameterType="DiscussPost" keyProperty="id">
+        insert into discuss_post(user_id,title,content,type,status,create_time,comment_count,score)
+        values (#{userId},#{title},#{content},#{type},#{status},#{createTime},#{commentCount},#{score})
+
+    </insert>
+
+    <select id="selectDiscussPostById" resultType="DiscussPost">
+        select id,user_id,title,content,type,status,create_time,comment_count,score
+        from discuss_post
+        where id=#{id}
+    </select>
+
+    <update id="updateCommentCount">
+        update discuss_post set comment_count = #{CommentCount}
+        where id = #{id}
+    </update>
+
+    <update id="updateType">
+        update discuss_post set type = #{type}
+        where id = #{id}
+    </update>
+
+    <update id="updateStatus">
+        update discuss_post set status = #{status}
+        where id = #{id}
+    </update>
+
+    <update id="updateScore">
+        update discuss_post set score = #{score}
+        where id = #{id}
+    </update>
 
 </mapper>
