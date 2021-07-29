@@ -8,7 +8,7 @@
 
 ## 在线演示地址
 
-http://community.turl.tech
+http://47.94.56.175/
 
 ## 测试账号
 
@@ -49,11 +49,6 @@ http://community.turl.tech
 - [x] 监控
 - [x] 限流
 
-### TO DO List
-
-- [ ] 积分模块
-- [ ] 收藏模块
-- [ ] 浏览量
 
 ## 功能简介
 
@@ -90,71 +85,29 @@ http://community.turl.tech
 
 ![网站架构图](https://gitee.com/zhengguohuang/img/raw/master/img/%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%9B%BE.png)
 
-## 数据库初始化
-
-```sql
-create database community;
-use community;
-source /path/to/sql/init_schema.sql;
-source /path/to/sql/init_data.sql;
-source /path/to/sql/tables_mysql_innodb.sql;
-```
-
-## 运行
-
-1. 安装JDK，Maven
-
-2. 克隆代码到本地
-
-   ```bash
-   git clone https://github.com/zhengguohuang/community.git
-   ```
-
-3. 配置mysql、七牛云、kafka、ElasticSearch
-
-4. 启动zookeeper
-
-5. 启动Kafka
-
-6. 启动Elasticsearch
-
-7. 运行打包命令
-
-   ```bash
-   mvn package
-   ```
-
-8. 运行项目
-
-   ```bash
-   java -jar xxx.jar
-   ```
-
-9. 访问项目
-
-   ```
-   http://localhost:8080
-   ```
 
 ## 运行效果展示
 
-#### 发帖
+#### 登陆
+![](https://github.com/YongnianLv/community/blob/master/community/img/Snipaste_2021-07-29_11-24-08.png)
 
+#### 发帖
+![](https://github.com/YongnianLv/community/blob/master/community/img/Snipaste_2021-07-29_10-30-01.png)
 
 #### 帖子详情、评论
-
+![](https://github.com/YongnianLv/community/blob/master/community/img/Snipaste_2021-07-29_10-32-31.png)
 
 #### 私信
-
+![](https://github.com/YongnianLv/community/blob/master/community/img/Snipaste_2021-07-29_10-35-22.png)
 
 
 #### 系统通知
-
+![](https://github.com/YongnianLv/community/blob/master/community/img/Snipaste_2021-07-29_10-35-35.png)
 
 
 #### 搜索
-
+![](https://github.com/YongnianLv/community/blob/master/community/img/Snipaste_2021-07-29_10-36-37.png)
 
 #### 网站统计
-
+![](https://github.com/YongnianLv/community/blob/master/community/img/Snipaste_2021-07-29_10-39-12.png)
 
